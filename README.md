@@ -1,7 +1,5 @@
 # MSc Bioinformatics Research Project - Mapping epigenomic data to repetitive elements
 
-### MSc Bioinformatics Research project code
-
 ## General
 
 This pipeline was generated as part of a Bioinformatics Research project with the BrancoLab to identify the location of polyTE's.
