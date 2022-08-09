@@ -2,11 +2,11 @@
 
 MSc Bioinformatics Research project code
 
-## Important links
-### Github
+## General
 
-This repository contains most of the Application files, the documentation files and some of the Appendix files (not all owing to size constraints).
-https://github.com/isabelrem/JIDA
+This pipeline was generated as part of a Bioinformatics Research project with the BrancoLab to identify the location of polyTE's.
+This repository contains the files required to run the pipeline but also the scripts used for performance analysis and the code to produce plots as a part of the report. 
+
 
 ### Project notes 
 
