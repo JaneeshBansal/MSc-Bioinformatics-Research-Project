@@ -1,6 +1,6 @@
 # MSc Bioinformatics Research Project - Mapping epigenomic data to repetitive elements
 
-MSc Bioinformatics Research project code
+### MSc Bioinformatics Research project code
 
 ## General
 
