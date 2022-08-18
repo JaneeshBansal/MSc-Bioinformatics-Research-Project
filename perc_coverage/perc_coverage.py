@@ -244,49 +244,71 @@ for chromosome, values in L1_human_dict.items():
         # extracting values within this window for the L1 start values 
         L1_start_ls = values[1][lower_bound_i:upper_bound_i]
 
+        # check if there are any results 
         if len(L1_start_ls) >= 1:
 
+            # sort the list according to ascending order
             L1_start_ls = sorted(L1_start_ls)
-
+            
+            # making an empty dictionary to store how many reads are present in a region of the L1 consensus
             coverage_dict = {"<1":0, "1-2":0, "2-3":0, "3-4":0, "4-5":0, "5<":0}
 
+            # make a list of the dictionary keys 
             coverage_dict_keys = list(coverage_dict.keys())
 
-            ### 
+            ### size of the L1 consensus regions ###
             mini_window = 1000
             mini_step = 1000
-            ###
-
+            #########################################
+            
+            # start position
             mini_start = 0
-
+            
+            # renaming 
             mini_lower_bound = mini_start
             mini_upper_bound = mini_window
-
+            
+            # upper bound window size is smaller than the L1 sequence length  
             while mini_upper_bound < seqLen:
-                
+             
+                # positions of the dictionary keys
                 for n in range(0, len(coverage_dict_keys)):
-                    
+                
+                    # run this code as long as below 6kb
                     if n < (len(coverage_dict_keys)-1):
-
+                   
+                        # get the lower bound 
                         mini_lower_bound_i = bisect.bisect_left(L1_start_ls, mini_lower_bound)
+                        # get the upper bound 
                         mini_upper_bound_i = bisect.bisect_right(L1_start_ls, mini_upper_bound, lo=mini_lower_bound_i)
+                        # subset the values within the list 
                         L1_start_subset = L1_start_ls[mini_lower_bound_i:mini_upper_bound_i]
                     
+                    # if above 6kb size 
                     else:
+                     
+                        # get the lower bound 
                         mini_lower_bound_i = bisect.bisect_left(L1_start_ls, mini_lower_bound)
+                        # subset anything greater than the lower bound 
                         L1_start_subset = L1_start_ls[mini_lower_bound_i:]
-
+                    
+                    # store the number of L1 positions in the dictionary for the specific L1 region
                     coverage_dict[coverage_dict_keys[n]] = len(L1_start_subset)
 
+                    # shift the L1 consensus region 
                     mini_upper_bound += mini_step
                     mini_lower_bound += mini_step
                     n += 1
 
-            # percentage coverage
+            # PERCENTAGE COVERAGE
+            # add the number of keys which have a value that is not 0 
             tot_covered = sum(value != 0 for value in coverage_dict.values())
+            # the total number of keys within the dictionary 
             tot = len(coverage_dict_keys)
+            # calculate the percentage coverage of the L1 consensus 
             perc_coverage = (tot_covered/tot)*100
             
+            # addition of information to the dictionary 
             if chromosome in all_coverage_dict:
                 all_coverage_dict[chromosome].append((perc_coverage, lower_bound, upper_bound, L1_start_ls, len(L1_start_ls)))
             # addition of information for a new chr record 
