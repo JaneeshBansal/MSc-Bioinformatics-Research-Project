@@ -1,8 +1,8 @@
-# MSc Bioinformatics Research Project - Mapping epigenomic data to repetitive elements
+# MSc Bioinformatics Research Project - PolTED
 
 ## General
 
-This pipeline was generated as part of a Bioinformatics Research project with the BrancoLab to identify the location of polyTE's.
+PolTED was generated as part of a Bioinformatics Research project with the BrancoLab to identify the location of polyTE's.
 This repository contains the files required to run the pipeline but also the scripts used for performance analysis and the code to produce plots as a part of the report. 
 
 
